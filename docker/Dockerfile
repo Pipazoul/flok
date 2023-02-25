@@ -1,4 +1,5 @@
-FROM node:lts-alpine
+# Stage 1: Build the application
+FROM node:lts-alpine AS build
 
 # Install git
 RUN apk update && apk add git
@@ -23,6 +24,16 @@ RUN yarn build
 WORKDIR /usr/src/app/flok/packages/web
 RUN yarn build
 
+# Stage 2: Create a minimal image for running the application
+FROM node:lts-alpine
+
+# Copy the built application from the previous stage
+COPY --from=build /usr/src/app/flok /usr/src/app/flok
+
+WORKDIR /usr/src/app/flok/packages/web
+
+# Install only runtime dependencies
+RUN yarn install --prod --ignore-scripts --prefer-offline
 
 # cmd flok-web
 CMD [ "yarn", "start"]
