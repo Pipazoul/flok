@@ -149,6 +149,26 @@ then they should run:
 flok-repl -h ws://192.168.0.5:3000 -t tidal -s 1a0c2df3-5931-46dd-9c7c-52932de15a5d
 ```
 
+## flok web with docker
+
+You can run flok-web with docker. The docker image is available on docker hub.
+
+```sh
+docker run -p 3000:3000 yassinsiouda/flok-server
+```
+
+**Using docker-compose**
+
+```yml
+version: '3.7'
+services:
+  flok:
+    image: yassinsiouda/flok-server:latest
+    container_name: flok-server
+    ports:
+      - 3000:3000
+```
+
 ### Supported REPL targets
 
 #### TidalCycles
