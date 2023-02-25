@@ -1,17 +1,26 @@
 FROM node:lts
 
+
 # Create app directory
 WORKDIR /usr/src/app
 
-COPY ./ /usr/src/app/
+# clone and ckeckout to 8f22b0acc521c4cff27766edc59b643438771707
+RUN git clone https://github.com/munshkr/flok.git
 
-RUN npm install --legacy-peer-deps
+WORKDIR /usr/src/app/flok
+RUN git checkout 8f22b0acc521c4cff27766edc59b643438771707
 
-WORKDIR /usr/src/app/packages/core
-RUN npm run build
+RUN yarn install --ignore-engines
 
-WORKDIR /usr/src/app/packages/web
-RUN npm run build
+WORKDIR /usr/src/app/flok/packages/core
+RUN yarn build
+
+WORKDIR /usr/src/app/flok/packages/repl
+RUN yarn build
+
+WORKDIR /usr/src/app/flok/packages/web
+RUN yarn build
+
 
 # cmd flok-web
-CMD [ "npm", "run", "start" ]
+CMD [ "yarn", "start"]
