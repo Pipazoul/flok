@@ -1,0 +1,7 @@
+version: '3.7'
+services:
+  flok:
+    build: .
+    container_name: flok-server
+    ports:
+      - 4500:3000
