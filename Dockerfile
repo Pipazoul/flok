@@ -1,5 +1,7 @@
-FROM node:lts
+FROM node:lts-alpine
 
+# Install git
+RUN apk update && apk add git
 
 # Create app directory
 WORKDIR /usr/src/app
