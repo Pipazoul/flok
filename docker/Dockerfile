@@ -34,6 +34,6 @@ WORKDIR /usr/src/app/flok/packages/web
 
 # Install only runtime dependencies
 RUN yarn install --prod --ignore-scripts --prefer-offline
-
+RUN yarn add yjs
 # cmd flok-web
 CMD [ "yarn", "start"]
