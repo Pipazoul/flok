@@ -11,8 +11,7 @@ WORKDIR /usr/src/app
 RUN git clone https://github.com/munshkr/flok.git
 
 WORKDIR /usr/src/app/flok
-RUN git checkout 8f22b0acc521c4cff27766edc59b643438771707
-
+RUN git checkout flok-next
 RUN yarn install --ignore-engines
 
 WORKDIR /usr/src/app/flok/packages/core
@@ -34,6 +33,6 @@ WORKDIR /usr/src/app/flok/packages/web
 
 # Install only runtime dependencies
 RUN yarn install --prod --ignore-scripts --prefer-offline
-RUN yarn add yjs
+#RUN yarn add yjs
 # cmd flok-web
 CMD [ "yarn", "start"]

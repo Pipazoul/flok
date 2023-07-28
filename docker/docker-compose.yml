@@ -1,7 +1,10 @@
 version: '3.7'
 services:
   flok:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: yassinsiouda/flok-server:next
     container_name: flok-server
     
     ports:
